@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechnoFest 2024 | Cybersecurity Department - Sri Nidhi College of Engineering</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-spinner">
+            <div class="spinner-circle"></div>
+            <p>Loading TechnoFest 2024...</p>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Sri Indu College of Engineering</h1>
+                    <p>Cybersecurity Department</p>
+                </div>
+            </div>
+            
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="login.html" class="login-btn">Login</a></li>
+                    <li><a href="register.html" class="register-btn">Register</a></li>
+                </ul>
+                
+                <div class="nav-user" id="navUser" style="display: none;">
+                    <div class="user-profile" id="userProfile">
+                        <img src="https://ui-avatars.com/api/?name=User&background=FF6B35&color=fff" alt="User" id="userAvatar">
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="user-info">
+                                <h4 id="userName">User Name</h4>
+                                <p id="userEmail">user@example.com</p>
+                                <span class="user-role" id="userRole">User</span>
+                            </div>
+                            <div class="dropdown-links">
+                                <a href="#"><i class="fas fa-user"></i> My Profile</a>
+                                <a href="#"><i class="fas fa-calendar-check"></i> My Registrations</a>
+                                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="admin-indicator" id="adminIndicator" style="display: none;">
+                    <i class="fas fa-crown"></i>
+                    <span>Admin Mode</span>
+                </div>
+            </div>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="particles-container" id="particles"></div>
+            <div class="gradient-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title animate-text">TechnoFest 2024</h1>
+                <h2 class="hero-subtitle">Cybersecurity Department</h2>
+                <p class="hero-description">Where Innovation Meets Security: Explore Cutting-Edge Cybersecurity Technologies, Workshops, and Competitions</p>
+                <div class="hero-buttons">
+                    <a href="events.html" class="btn-primary btn-hero">
+                        <span>Explore Events</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#about" class="btn-secondary btn-hero">
+                        <span>Learn More</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-element">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="floating-element">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="floating-element">
+                    <i class="fas fa-code"></i>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Cybersecurity Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cybersecurity at SNCE</h2>
+                <p class="section-subtitle">Pioneering Digital Defense Education</p>
+                <div class="title-line"></div>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Shaping the Future of Digital Security</h3>
+                    <p>The Cybersecurity Department at Sri Nidhi College of Engineering is committed to developing the next generation of cybersecurity professionals through cutting-edge curriculum, hands-on training, and industry collaboration.</p>
+                    <p>Our program combines theoretical knowledge with practical skills in network security, ethical hacking, digital forensics, and cryptography, preparing students for the challenges of tomorrow's digital landscape.</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="stat-number" data-count="450">0</h3>
+                        <p class="stat-label">Active Students</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3 class="stat-number" data-count="25">0</h3>
+                        <p class="stat-label">Expert Faculty</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3 class="stat-number" data-count="8">0</h3>
+                        <p class="stat-label">Advanced Labs</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="stat-number" data-count="120">0</h3>
+                        <p class="stat-label">Awards & Recognitions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Department Information -->
+    <section class="department-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Department</h2>
+                <p class="section-subtitle">Excellence in Cybersecurity Education</p>
+                <div class="title-line"></div>
+            </div>
+            
+            <div class="department-grid">
+                <div class="info-card">
+                    <div class="card-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Vision</h3>
+                    <p>To be a center of excellence in cybersecurity education and research, producing ethical cybersecurity professionals who can protect digital assets and contribute to national security.</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Mission</h3>
+                    <p>To provide quality education through innovative teaching methods, industry collaboration, and research opportunities that prepare students for global cybersecurity challenges.</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Programs</h3>
+                    <p>B.Tech in Cybersecurity, M.Tech in Cybersecurity, PhD programs, and professional certification courses in collaboration with industry partners.</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Industry Partnerships</h3>
+                    <p>Collaborations with leading cybersecurity firms for internships, placements, and live project opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOD Section -->
+    <section class="hod-section">
+        <div class="container">
+            <div class="hod-card">
+                <div class="hod-image">
+                    <div class="image-container">
+                        <div class="image-border"></div>
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Dr. Shravanti - HOD Cybersecurity">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="hod-badge">
+                        <i class="fas fa-award"></i>
+                        Head of Department
+                    </div>
+                </div>
+                <div class="hod-content">
+                    <h2 class="hod-name">Dr. Shravanti</h2>
+                    <h3 class="hod-title">Head, Cybersecurity Department</h3>
+                    <p class="hod-bio">With over 15 years of experience in cybersecurity research and education, Dr. Shravanti leads our department with vision and dedication. Her expertise includes network security, cryptography, and digital forensics.</p>
+                    <div class="hod-quote">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"In a world driven by digital transformation, cybersecurity is not just a technical challenge but a societal imperative. At TechnoFest 2024, we celebrate innovation while emphasizing the importance of secure digital ecosystems."</p>
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <div class="hod-credentials">
+                        <span><i class="fas fa-certificate"></i> PhD in Cybersecurity</span>
+                        <span><i class="fas fa-book"></i> 50+ Publications</span>
+                        <span><i class="fas fa-globe"></i> International Recognition</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TechnoFest Introduction -->
+    <section class="technofest-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Welcome to TechnoFest</h2>
+                <p class="section-subtitle">Annual Technical & Non-Technical Extravaganza</p>
+                <div class="title-line"></div>
+            </div>
+            
+            <div class="technofest-content">
+                <div class="technofest-text">
+                    <p>TechnoFest is an annual technical and non-technical event organized by students of Sri Nidhi College of Engineering. Students showcase their innovative ideas through various competitions, workshops, and presentations across all departments.</p>
+                    <p>This year's Cybersecurity Department events focus on emerging threats, defense mechanisms, and ethical hacking challenges that push the boundaries of innovation.</p>
+                </div>
+                
+                <div class="event-types">
+                    <div class="type-card technical">
+                        <div class="type-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3>Technical Events</h3>
+                        <p>Hackathons, CTF Challenges, Code Wars, Security Workshops, Project Exhibitions</p>
+                    </div>
+                    <div class="type-card non-technical">
+                        <div class="type-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>Non-Technical Events</h3>
+                        <p>Technical Paper Presentations, Quiz Competitions, Debate, Poster Making, Gaming Tournaments</p>
+                    </div>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Registration Opens</h4>
+                            <p>October 1, 2024</p>
+                            <p>Online registration begins for all events</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Idea Submission</h4>
+                            <p>October 15-30, 2024</p>
+                            <p>Submit project ideas and abstracts</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Workshops & Training</h4>
+                            <p>November 1-10, 2024</p>
+                            <p>Technical workshops and preparation sessions</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Main Event</h4>
+                            <p>November 15-17, 2024</p>
+                            <p>Three days of competitions, exhibitions, and awards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h3>Sri Nidhi College of Engineering</h3>
+                            <p>Cybersecurity Department</p>
+                        </div>
+                    </div>
+                    <p class="footer-about">Leading cybersecurity education with industry-aligned curriculum and cutting-edge research facilities.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="#about">About Department</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Sri Nidhi College of Engineering,<br>Tamil Nadu, India</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>cybersecurity@snce.ac.in</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mon - Fri: 9:00 AM - 5:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for updates on events and workshops</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Sri Nidhi College of Engineering - Cybersecurity Department. All rights reserved.</p>
+                <p>TechnoFest 2024 | Designed with <i class="fas fa-heart"></i> by Cybersecurity Department</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

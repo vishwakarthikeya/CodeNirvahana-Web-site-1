@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | TechnoFest 2024 | Cybersecurity Department</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/events.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-spinner">
+            <div class="spinner-circle"></div>
+            <p>Loading Events...</p>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Sri Nidhi College of Engineering</h1>
+                    <p>Cybersecurity Department</p>
+                </div>
+            </div>
+            
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html" class="active">Events</a></li>
+                    <li><a href="login.html" class="login-btn">Login</a></li>
+                    <li><a href="register.html" class="register-btn">Register</a></li>
+                </ul>
+                
+                <div class="nav-user" id="navUser" style="display: none;">
+                    <div class="user-profile" id="userProfile">
+                        <img src="https://ui-avatars.com/api/?name=User&background=FF6B35&color=fff" alt="User" id="userAvatar">
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="user-info">
+                                <h4 id="userName">User Name</h4>
+                                <p id="userEmail">user@example.com</p>
+                                <span class="user-role" id="userRole">User</span>
+                            </div>
+                            <div class="dropdown-links">
+                                <a href="#"><i class="fas fa-user"></i> My Profile</a>
+                                <a href="#"><i class="fas fa-calendar-check"></i> My Registrations</a>
+                                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="admin-indicator" id="adminIndicator" style="display: none;">
+                    <i class="fas fa-crown"></i>
+                    <span>Admin Mode</span>
+                </div>
+            </div>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Events Header -->
+    <section class="events-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="page-title">TechnoFest Events 2024</h1>
+                <p class="page-subtitle">Explore our exciting lineup of technical and non-technical events</p>
+                
+                <div class="search-filter">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search events...">
+                        <button class="btn-icon" id="clearSearch">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All Events</button>
+                        <button class="filter-btn" data-filter="technical">Technical</button>
+                        <button class="filter-btn" data-filter="non-technical">Non-Technical</button>
+                        <button class="filter-btn" data-filter="workshop">Workshops</button>
+                        <button class="filter-btn" data-filter="competition">Competitions</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Controls -->
+    <section class="admin-controls" id="adminControls" style="display: none;">
+        <div class="container">
+            <div class="admin-header">
+                <h3><i class="fas fa-tools"></i> Admin Controls</h3>
+                <button class="btn-primary" id="addEventBtn">
+                    <i class="fas fa-plus"></i> Add New Event
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Grid -->
+    <section class="events-grid-section">
+        <div class="container">
+            <div class="loading-container" id="loadingContainer">
+                <div class="loading-spinner">
+                    <div class="spinner-circle"></div>
+                    <p>Loading events...</p>
+                </div>
+            </div>
+
+            <div class="events-grid" id="eventsGrid">
+                <!-- Events will be dynamically loaded here -->
+                <div class="no-events" id="noEvents" style="display: none;">
+                    <i class="fas fa-calendar-times"></i>
+                    <h3>No Events Found</h3>
+                    <p>There are no events available at the moment.</p>
+                    <button class="btn-primary" id="addFirstEventBtn" style="display: none;">
+                        <i class="fas fa-plus"></i> Add Your First Event
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add/Edit Event Modal -->
+    <div class="modal" id="eventModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Add New Event</h3>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="eventForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="eventImage" class="form-label">
+                            <i class="fas fa-image"></i> Event Image URL
+                        </label>
+                        <input type="url" id="eventImage" class="form-control" 
+                               placeholder="https://example.com/image.jpg" required>
+                        <div class="form-text">Enter a direct link to the event image</div>
+                        
+                        <div class="image-preview" id="imagePreview" style="display: none;">
+                            <img src="" alt="Preview" id="previewImage">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventTitle" class="form-label">
+                            <i class="fas fa-heading"></i> Event Title
+                        </label>
+                        <input type="text" id="eventTitle" class="form-control" 
+                               placeholder="Enter event title" required maxlength="100">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventCategory" class="form-label">
+                            <i class="fas fa-tag"></i> Category
+                        </label>
+                        <select id="eventCategory" class="form-control" required>
+                            <option value="">Select Category</option>
+                            <option value="technical">Technical</option>
+                            <option value="non-technical">Non-Technical</option>
+                            <option value="workshop">Workshop</option>
+                            <option value="competition">Competition</option>
+                            <option value="seminar">Seminar</option>
+                            <option value="exhibition">Exhibition</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventDescription" class="form-label">
+                            <i class="fas fa-align-left"></i> Event Description
+                        </label>
+                        <textarea id="eventDescription" class="form-control" 
+                                  rows="5" placeholder="Enter event description" required></textarea>
+                        <div class="form-text">Maximum 500 characters</div>
+                        <div class="char-count">
+                            <span id="charCount">0</span>/500 characters
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventDate" class="form-label">
+                            <i class="fas fa-calendar-alt"></i> Event Date
+                        </label>
+                        <input type="date" id="eventDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventTime" class="form-label">
+                            <i class="fas fa-clock"></i> Event Time
+                        </label>
+                        <input type="time" id="eventTime" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventVenue" class="form-label">
+                            <i class="fas fa-map-marker-alt"></i> Venue
+                        </label>
+                        <input type="text" id="eventVenue" class="form-control" 
+                               placeholder="Enter venue details" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventLink" class="form-label">
+                            <i class="fas fa-link"></i> Registration Link
+                        </label>
+                        <input type="url" id="eventLink" class="form-control" 
+                               placeholder="https://forms.google.com/..." required>
+                        <div class="form-text">Google Form or registration page link</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventMaxParticipants" class="form-label">
+                            <i class="fas fa-users"></i> Maximum Participants
+                        </label>
+                        <input type="number" id="eventMaxParticipants" class="form-control" 
+                               placeholder="Enter maximum participants" min="1" max="1000">
+                    </div>
+                    
+                    <input type="hidden" id="eventId">
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn-outline" id="cancelBtn">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn-primary" id="submitBtn">
+                        <span id="submitText">Add Event</span>
+                        <i class="fas fa-spinner fa-spin" id="submitSpinner" style="display: none;"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-exclamation-triangle text-danger"></i> Confirm Delete
+                </h3>
+                <button class="modal-close" id="deleteModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <p>Are you sure you want to delete this event? This action cannot be undone.</p>
+                <div class="delete-preview" id="deletePreview">
+                    <img src="" alt="Event Image" id="deleteImage">
+                    <div>
+                        <h4 id="deleteTitle">Event Title</h4>
+                        <p id="deleteDate">Date: </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn-outline" id="cancelDeleteBtn">
+                    Cancel
+                </button>
+                <button type="button" class="btn-danger" id="confirmDeleteBtn">
+                    <span>Delete Event</span>
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Container -->
+    <div class="alert-container" id="alertContainer"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h3>Sri Nidhi College of Engineering</h3>
+                            <p>Cybersecurity Department</p>
+                        </div>
+                    </div>
+                    <p class="footer-about">Leading cybersecurity education with industry-aligned curriculum and cutting-edge research facilities.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="index.html#about">About Department</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Sri Nidhi College of Engineering,<br>Tamil Nadu, India</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>cybersecurity@snce.ac.in</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mon - Fri: 9:00 AM - 5:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for updates on events and workshops</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Sri Nidhi College of Engineering - Cybersecurity Department. All rights reserved.</p>
+                <p>TechnoFest 2024 | Designed with <i class="fas fa-heart"></i> by Cybersecurity Department</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/events.js"></script>
+</body>
+</html>
